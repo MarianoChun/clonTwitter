@@ -33,14 +33,20 @@ func viperEnvVariable(key string) (string, error) {
 
 /* setearKeyURI setea la key del URI dependiendo si la app inicia en Heroku o en Local*/
 func setearKeyURI(key string) string {
+
 	uriKey, err := viperEnvVariable(key)
 	if err != nil {
 		log.Fatalf("Error al obtener la key desde viper")
 	} else {
 		return uriKey
 	}
+
 	// Obtenemos la key desde heroku
 	uriKey = os.Getenv("MONGO_TOKEN")
+	if uriKey == "" {
+		log.Fatalf("Error al obtener la key desde heroku")
+		return string("")
+	}
 	return uriKey
 }
 
