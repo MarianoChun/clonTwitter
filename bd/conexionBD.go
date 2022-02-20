@@ -5,13 +5,12 @@ package bd
 import (
 	"context"
 	"log"
-	"os"
 
-	"github.com/spf13/viper"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 )
 
+/*
 // Obtener KEY
 func viperEnvVariable(key string) (string, error) {
 	// Configuramos el path del config file
@@ -31,7 +30,7 @@ func viperEnvVariable(key string) (string, error) {
 	return value, nil
 }
 
-/* setearKeyURI setea la key del URI dependiendo si la app inicia en Heroku o en Local*/
+ //setearKeyURI setea la key del URI dependiendo si la app inicia en Heroku o en Local
 func setearKeyURI(key string) string {
 
 	uriKey, err := viperEnvVariable(key)
@@ -51,8 +50,11 @@ func setearKeyURI(key string) string {
 }
 
 var uriKey = setearKeyURI("MONGO_TOKEN")
+*/
 var MongoCN = ConectarBD() // Aqui se ejecuta la conexion a la base de datos, devuelve la conexion en si misma
-var URI string = "mongodb+srv://Mariano:" + uriKey + "@twitter.psjyi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+// Guest access (only read privileges to db)
+var guestKey = "TBG3ibdau63wjBtW"
+var URI string = "mongodb+srv://Guest:" + guestKey + "@twitter.psjyi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 
 var clientOptions = options.Client().ApplyURI(URI)
 

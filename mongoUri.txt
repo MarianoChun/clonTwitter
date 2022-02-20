@@ -1,0 +1,1 @@
+mongodb+srv://Guest:TBG3ibdau63wjBtW@twitter.psjyi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
